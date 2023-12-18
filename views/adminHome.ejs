@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"> 
+  <title>Canteen Token System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="templates/adminHome.css">
+</head>
+<body>
+    <form action="/adminhome" method="post">
+  <header>
+    <h1>Admin Menu</h1>
+    <nav>
+      <ul>
+        <li><a href="/adminLogout">Logout</a></li>
+        <li><a href="/orders">Orders</a></li>     
+        <li id="three"><a href="/authToken">Search</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <button type="submit" id="additem"><a href="/addmitem">Add Item</a></button>
+    <button type="submit" id="modify"><a href="/modcost">Modify</a></button>
+    <button type="submit" id="remove"><a href="/delmitem">Remove</a></button>
+    <div class="container">
+    <% if(sampleData.length>0) { %>
+      <%sampleData.forEach(function(data){ %>
+        <div class="item">
+          <div class="card">
+            <table>
+       <tr><td> <h4 id="item-name" name="iname"><b>Name:</b><%= data['item_name'] %></h4></td></tr>
+        <tr><td><h4 id="price"><b>Cost:</b><%= data['cost'] %></h4></td></tr>
+      </table>
+    </div>
+  </div>
+     <% }) %>
+    <% } else { %>
+      <h1>no data found</h1>
+    <% } %>
+   
+  
+</main>
+
+</form>
+</body>
+</html>

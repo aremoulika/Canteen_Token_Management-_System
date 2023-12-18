@@ -1,0 +1,107 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('/images/userfood.jpeg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+  }
+  
+/* .container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  } */
+  header {
+    /* background-color: rgb(50, 165, 173); */
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    left: 800px;
+    bottom: 300px;
+   }
+  nav ul {
+    list-style: none;
+    padding: 0px;
+    color: white;
+   
+  }
+  
+  nav ul li {
+    display: inline;
+    margin-right: 20px;
+    border-radius: 4px;
+    
+   
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 18px;
+    padding: 10px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    background-color: white;
+  }
+  
+  form {
+    width: 300px;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+    width: 400px;
+    position: relative;
+    right: 35px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+    color: white;
+  }
+  #home a{
+    color: black;
+    text-decoration: none;
+    
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  #msg{
+    color: white;
+  }
+  
+  input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #0056b3;
+  }

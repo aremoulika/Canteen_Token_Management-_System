@@ -1,0 +1,128 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+  /* background-image: url("/images/background.jpg"); */
+  background-image: url('/images/background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+header {
+  /* background-color: rgb(50, 165, 173); */
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  left: 250px;
+
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2em;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0px;
+ 
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+  border-radius: 4px;
+  padding: 20px;
+  position: relative;
+  top:20px;
+ 
+  /* border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 18px;
+  padding: 10px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px; */
+}
+
+
+nav ul li a {
+  text-decoration: none;
+  color: #fff;
+}
+
+main {
+  padding: 5px;
+}
+
+.hero {
+ 
+  background-size: cover;
+  background-position: center;
+  height: 820px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-content {
+  text-align: center;
+  color: #fff;
+}
+
+#head {
+  font-size: 3em;
+  margin-bottom: 20px;
+  align-items: right;
+  text-align: center;
+  position: relative;
+  left: 330px;
+  top: 170px;
+  color: white;
+ 
+}
+#tag{
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  align-items: right;
+  text-align: center;
+  position: relative;
+  left: 330px;
+  top: 170px;
+  color: white;
+}
+
+.hero-content p {
+  font-size: 1.2em;
+}
+
+.hero1 {
+  background-image: url('images/coffee.jpeg');
+  background-size: cover;
+  background-position: center;
+  height: 1000px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cart</title>
+  <link rel="stylesheet" href="/templates/cart.css">
+</head>
+<body>
+  <header>
+    <h1>Your Cart</h1>
+    <nav>
+      <ul>
+        <li><a href="/userHome">Home</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="container">
+    <% cartItems.forEach((item, index) => { %>
+    <div class="card">
+  <ul>
+        <table> 
+      
+     <tr><td>   <span id="item-name"><%= item.name %></span></td></tr>
+       <tr><td> <span id="price">Price: $<%= item.price %></span></td></tr>
+      <tr><td>
+        <form action="/incrementQuantity" method="post">
+          <input type="hidden" name="data-id" value="<%= item['data-id'] %>">
+          <button type="submit" id="sign1">+</button>
+        </form>
+        <form action="/decrementQuantity" method="post">
+          <input type="hidden" name="data-id" value="<%= item['data-id'] %>">
+          <button type="submit" id="sign2">-</button>
+        </form></td></tr>
+       <tr><td ><span id="qty">Quantity: <span id="quantity_<%= item['data-id'] %>"><%= item.quantity %></span></span></td></tr>
+       
+        <tr><td><form action="/removeItem" method="post">
+          <input type="hidden" name="index" value="<%= index %>">
+          <button type="submit" id="remove">Remove</button>
+        </form></td></tr>
+      </table>
+   
+  
+  </ul>
+</div>
+<% }); %>
+</div>
+  <button id="clear" onclick="clearAllItems()">Clear Cart</button>
+  <br><br>
+  <button id="getTotalCostBtn" onclick="fetchTotalCost()">GetTotalCost</button>
+  <form action="/proceedOrder" method="post" >
+    <label id="date" for="deliveryDate">Delivery Date:</label>
+    <input type="date" id="deliveryDate" name="dDate" min="<%= new Date().toISOString().split('T')[0] %>" required><br><br>
+  <button type="submit" id="proceed" onclick="proceedOrder()">Proceed Order</button>
+  </form>
+  <script>
+    let cartItemsData = JSON.parse('<%- cartItems %>');
+
+    function proceedOrder() {
+    fetch('/totalCost') // Fetch the total cost from the endpoint
+      .then(response => response.json())
+      .then(data => {
+        const totalCost = data.totalCost; // Get the total cost from the response
+        fetch('/placeOrder', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ cartItems: cartItemsData, totalCost }),
+        })
+          .then(response => {
+            if (response.ok) {
+              alert('Order placed!');
+            } else {
+              throw new Error('Failed to place order.');
+            }
+          })
+          .catch(error => {
+            console.error('Error placing order:', error);
+            alert('Failed to place order. Please try again.');
+          });
+      })
+      .catch(error => {
+        console.error('Error fetching total cost:', error);
+        alert('Failed to fetch total cost. Please try again.');
+      });
+  }
+  
+// function updateCartItems(updatedItems) {
+//   cartItemsData = updatedItems;
+//   console.log(cartItemsData);
+// }
+
+function updateTotalCost(totalCost) {
+  console.log('Total cost:', totalCost);
+}
+
+    function incrementQuantity(dataId) {
+    fetch('/incrementQuantity', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ 'data-id': dataId }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          const quantityElement = document.getElementById(`quantity_${dataId}`);
+          quantityElement.textContent = parseInt(quantityElement.textContent) + 1;
+          updateTotalCost(data.totalCost);
+        } else {
+          console.error('Failed to increment quantity');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }
+
+  function decrementQuantity(dataId) {
+    fetch('/decrementQuantity', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ 'data-id': dataId }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          const quantityElement = document.getElementById(`quantity_${dataId}`);
+          const currentQuantity = parseInt(quantityElement.textContent);
+          if (currentQuantity > 1) {
+            quantityElement.textContent = currentQuantity - 1;
+            updateTotalCost(data.totalCost);
+          }
+        } else {
+          console.error('Failed to decrement quantity');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }
+        
+function clearAllItems() {
+    const confirmation = confirm("Are you sure you want to clear all items from the cart?");
+    if (confirmation) {
+      fetch('/clearCart', {
+        method: 'POST',
+      })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Network response was not ok.');
+      })
+      .then(data => {
+        if (data.success) {
+          window.location.reload(); 
+        } else {
+          alert('Failed to clear the cart.');
+        }
+      })
+      .catch(error => {
+        console.error('There was an error clearing the cart:', error);
+        alert('An error occurred while clearing the cart.');
+      });
+    }
+  }
+  function fetchTotalCost() {
+    fetch('/totalCostdis')
+      .then(response => response.json())
+      .then(data => {
+        const totalCost1 = data.totalCost1;
+        const btn = document.getElementById('getTotalCostBtn');
+        btn.textContent = `TotalCost: $${totalCost1}`;
+      })
+      .catch(error => {
+        console.error('Error fetching total cost:', error);
+        alert('Failed to fetch total cost. Please try again.');
+});
+}
+  </script>
+</body>
+</html>

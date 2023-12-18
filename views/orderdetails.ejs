@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Order Details</title>
+    <link rel="stylesheet" href="/templates/orderdetails.css">
+</head>
+<body>
+    <header>
+        <h1>Canteen Token System</h1>
+        <nav>
+          <ul>
+            <li><a href="/userHome">Home</a></li>
+          </ul>
+        </nav>
+      </header>
+    <div class="container">
+        <% if(action == 'ordetails') { %>
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6">Order Details</div>
+                    </div>
+                </div>
+                <div class="card-body" >
+                    <table class="table table-responsive">
+                        <%
+                        if(sampleData.length > 0){
+                            sampleData.forEach(function(data){  
+                        %>
+                          <tr>
+                            <td>
+                            <div class="card-body">
+                                <table >                               
+                                  <tr><td><h6><b>Token Id: </b><%= data['tokenid'] %><br></td></tr></h6>
+                                  <tr><td><h6><b>Items</b></h6></td></tr>
+                               <ul>
+                               <% data['items'].forEach(function(item) { %></h6>
+                                  <tr><td> <li><b>Item Name: </b><%= item.name %> <br></li></td>
+                                   <td> <b>Item Price:</b> <%= item.price %>&nbsp &nbsp</td>
+                                 <td><b> Item Quantity: </b><%= item.quantity %><br></td>
+                                <% }); %></tr>
+                           
+                             <tr><td> <h6><b> Total Cost:</b> <%= data['cost'] %></td></tr></h6>
+                             <tr><td><h6><b>Status: </b> <%= data['status'] %></td> </tr></h6>
+                            <tr><td><h6><b> Order Date: </b><%= data['orderdate'] %></td> </tr> </h6>
+                             <tr> <td><h6><b> Delivary Date:</b><%= data['deliverydate'] %>     </td></tr>       </h6>                       
+                            </div>
+                            </td>
+                          </tr>
+                        </ul>
+                    </table>
+                          <% });
+                        }
+                        else {
+                        %>
+                        <tr>
+                            <td colspan="5">No Data Found</td>
+                        </tr>
+                        <%
+                        }
+                        %>
+                    </table>
+                    <% } else if (action =="profile") { %>
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-md-6">Your profile</div>
+                                </div>
+                            </div>
+                            <div class="card-body" >
+                                <table class="table table-responsive">
+                                    <%
+                                    if(sampleData.length > 0){
+                                        sampleData.forEach(function(data){  
+                                    %>
+                                      <tr><td>
+    
+                                         <div class="card-body">
+                                              <b> Name: </b><%= data['name'] %><br>
+                                              <b> Registration No: </b><%= data['rno'] %><br>
+                                              <b> Phone Number:</b> <%= data['phno'] %><br>
+                                              <b>Password:</b>  <%= data['pwd'] %><br>
+                                              <b>Wallet:</b>  <%= data['wallet'] %><br>
+                                            </div>
+                                </div>
+                            </td>
+                                      </tr>
+                                      <% });
+                                    }
+                                    else {
+                                    %>
+                                    <tr>
+                                        <td colspan="5">No Data Found</td>
+                                    </tr>
+                                    <%
+                                    }
+                                    %>
+                                </table>
+                        </div>
+                        </div>
+                    
+                    <%  } %>
+    </div>
+</body>
+</html>

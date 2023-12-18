@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/templates/searchToken.css">
+</head>
+<body>
+  
+    <% if(c1){ %>
+        <header>
+            <h1>Add Item</h1>
+          </header>
+     
+    <div class="login-wrapper">
+        
+        <form action="/addmitem" method="post" class="form">
+
+          <div class="input-group">
+            <input type="text" name="iname" id="name" required />
+            <label for="name">Enter ItemName</label>
+          </div>
+          <div class="input-group">
+            <input
+              type="number"
+              name="icost"
+              id="cost"
+              required
+            />
+            <label for="cost" >Cost</label>
+          </div>
+          <button class="submit-btn">AddItem</button>
+          <!-- <input type="submit" value="Login" class="submit-btn" /> -->
+  
+
+        </form>
+      </div>
+  
+    <% } else if(c2) { %>
+        <header>
+            <h1>Search</h1>
+            <nav>
+              <ul>
+                <li><a href="/adminHome">Home</a></li>
+                
+              </ul>
+            </nav>
+          </header>
+        <form action="/authToken" method="post">
+            <div class="wrap">
+                <div class="search">
+                   <input type="text" class="searchTerm" name="tid" placeholder="Enter Token ID:">
+                   <button type="submit" class="searchButton">
+                     <i class="fa fa-search"></i>Validate
+                  </button>
+                </div>
+             </div>
+            </form>
+    <% } else if(c3) { %>
+        <header>
+            <h1>Delete Item</h1>
+          </header>
+    <div class="login-wrapper">
+        <form action="/delmitem" method="post" class="form">
+          <div class="input-group">
+            <input type="text" name="iname" id="name" required />
+            <label for="name">Enter ItemName</label>
+          </div>
+         
+          <button class="submit-btn">Remove</button>
+          <!-- <input type="submit" value="Login" class="submit-btn" /> -->
+  
+
+        </form>
+      </div>
+    <% } else if(c4) { %>
+        <header>
+            <h1>Remove Item</h1>
+          </header>
+    <div class="login-wrapper">
+        <form action="/modcost" method="post" class="form">
+          <div class="input-group">
+            <input type="text" name="iname" id="name" required />
+            <label for="name">Enter ItemName</label>
+          </div>
+          <div class="input-group">
+            <input
+              type="number"
+              name="icost"
+              id="cost"
+              required
+            />
+            <label for="cost" >Cost</label>
+          </div>
+          <button class="submit-btn">Modify</button>
+          <!-- <input type="submit" value="Login" class="submit-btn" /> -->
+  
+
+        </form>
+      </div>
+    <% } %>
+</body>
+</html>

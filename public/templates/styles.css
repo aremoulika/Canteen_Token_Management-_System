@@ -1,0 +1,114 @@
+/* styles.css */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+  background-image: url('/images/foodie.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+header {
+  
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2em;
+  float: left;
+  position: relative;
+  color: black;
+  
+}
+header img{
+  float: left;
+  position: relative;
+  bottom: 10px;
+  right: 50px;
+  bottom: 50px;
+ 
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+  padding: 20px;
+  position: relative;
+  left: 120px;
+
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #fff;
+}
+
+main {
+  padding: 5px;
+}
+
+.hero {
+  /* background-image: url('/images/foodie.jpeg'); */
+  background-size: cover;
+  background-position: center;
+  height: 820px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-content {
+  text-align: center;
+  color: #fff;
+}
+
+.hero-content h2 {
+  font-size: 3em;
+  margin-bottom: 20px;
+  position: relative;
+  bottom: 250px;
+  left: 100px;
+}
+
+.hero-content p {
+  font-size: 1.2em;
+  position: relative;
+  bottom: 250px;
+  left: 100px;
+  
+}
+#order{
+  width: 70%;
+  position: relative;
+  right: 750px;
+  bottom: 50px;
+  border-radius: 20px;
+  height: 300px;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

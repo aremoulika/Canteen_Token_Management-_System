@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="templates/sty.css">
+</head>
+<body>
+  <header>
+    <h1>Admin Login</h1>
+  </header>
+  <main>
+    <section class="login-section">
+      <form class="login-form" action="/admin" method="post">
+        <div class="input-group">
+          <label for="username">Email:</label>
+          <input type="text" id="username" name="email" required>
+        </div>
+        <div class="input-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="pwd" required>
+        </div>
+        <input type="submit" value="login" class="login-button">
+      </form>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2023 Canteen Name. All rights reserved.</p>
+  </footer>
+</body>
+</html>

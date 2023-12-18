@@ -1,0 +1,579 @@
+mysql> create database canteen
+    -> ;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> use canteen;
+Database changed
+
+mysql> create table details(rno int(10),name varchar(20) not null,pwd varchar(15) not null,phno int(10) not null,primary key (rno));
+Query OK, 0 rows affected, 2 warnings (0.02 sec)
+
+mysql> alter table details modify rno varchar(10);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc details;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| rno   | varchar(10) | NO   | PRI | NULL    |       |
+| name  | varchar(20) | NO   |     | NULL    |       |
+| pwd   | varchar(15) | NO   |     | NULL    |       |
+| phno  | int         | NO   |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into details values("20jr1a0523","sindhu","1234",1234598765);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from details;
++------------+--------+------+------------+
+| rno        | name   | pwd  | phno       |
++------------+--------+------+------------+
+| 20jr1a0523 | sindhu | 1234 | 1234598765 |
++------------+--------+------+------------+
+1 row in set (0.00 sec)
+
+mysql> create table rno(tokenid int(5),items json,cost int,status varchar(15),orderdate date,deliverydate date,primary key (tokenid));
+Query OK, 0 rows affected, 1 warning (0.02 sec)
+
+mysql> insert into rno values(12345,'{"k1":10,"k2":20}',100,"pending",'2023-1-20','2023-1-23');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from rno;
++---------+----------------------+------+---------+------------+--------------+
+| tokenid | items                | cost | status  | orderdate  | deliverydate |
++---------+----------------------+------+---------+------------+--------------+
+|   12345 | {"k1": 10, "k2": 20} |  100 | pending | 2023-01-20 | 2023-01-23   |
++---------+----------------------+------+---------+------------+--------------+
+1 row in set (0.00 sec)
+
+create table rno(rollno varchar(10),tokenid int(5),items json,cost int,status
+varchar(15),orderdate date,deliverydate date,primary key (tokenid,rollno));
+ERROR 1050 (42S01): Table 'rno' already exists
+mysql> create table orders(rollno varchar(10),tokenid int(5),items json,cost int,stat
+us varchar(15),orderdate date,deliverydate date,primary key (tokenid,rollno));
+Query OK, 0 rows affected, 1 warning (0.05 sec)
+
+mysql> insert into orders values(11,'{"k1":10,"k2":20}',100,"pending",'2023-1-20','20
+23-1-23');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into orders values(20523,11,'{"k1":10,"k2":20}',100,"pending",'2023-1-2
+0','2023-1-23');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from orders;
++--------+---------+----------------------+------+---------+------------+--------------+
+| rollno | tokenid | items                | cost | status  | orderdate  | deliverydate |
++--------+---------+----------------------+------+---------+------------+--------------+
+| 20523  |      11 | {"k1": 10, "k2": 20} |  100 | pending | 2023-01-20 | 2023-01-23   |
++--------+---------+----------------------+------+---------+------------+--------------+
+1 row in set (0.00 sec)
+
+
+<!--  if(action == "showmenu") { %>
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6">Your order details</div>
+                    </div>
+                </div>
+                <div class="card-body" >
+                    <table class="table table-responsive">
+                        <%
+                        if(sampleData.length > 0){
+                            sampleData.forEach(function(data){  
+                        %>
+                          <tr>
+                            <td>
+                            <div class="card">
+                            <div class="card-body">
+                                    <%= data['tokenid'] %><br>
+                                    <%  data['items'].forEach(function(i) { %>
+                                    <%= i.name %>,
+                                    <%= i.price %>,
+                                    <%= i.quantity %>
+                                    <% }); %><br>
+                                    <%= data['cost'] %><br>
+                                    <%= data['status'] %><br>
+                                    <%= data['orderdate'] %><br>
+                                    <%= data['deliverydate'] %><br>
+                            </div>
+                            </div>
+                            </td>
+                          </tr>
+                          <% });
+                        }
+                        else {
+                        %>
+                        <tr>
+                            <td colspan="5">No Data Found</td>
+                        </tr>
+                        <%
+                        }
+                        %>
+                    </table>
+                    <% } %> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+    text-align: left;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+    float : right;
+    position: relative;
+    bottom: 35px;
+    
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.card {
+    width: 500px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin: 5px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex; /* Set display to flex */
+    flex-direction: row; /* Stack children vertically */
+    align-items: left; /* Center children horizontally */
+    text-align: right; /* Center text */
+    height: 200px;
+}
+
+.card img {
+    max-width: 50%;
+    height: auto;
+    margin-bottom: 10px; /* Add margin to separate image and text */
+}
+
+.card h2 {
+    font-size: 1.5em;
+    margin-right: 55px;
+    align-items: end;
+}
+
+.card p {
+    color: #555;
+}
+
+.card .price {
+    color: #e44d26;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    
+}
+#price{
+    position: relative;
+    left: 70px;
+}
+#cart{
+    position: relative;
+    bottom: 42px;
+}
+
+#item-name{
+    position: relative;
+    left: 58px;
+}
+
+.add-to-cart {
+    background-color: #e44d26;
+    color: #fff;
+    border: none;
+    height: 40px;
+    width: 150px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    position: relative;
+    left: 34px;
+}
+
+.add-to-cart:hover {
+    background-color: #333;
+}
+
+
+
+
+
+  <style>
+    /* Basic styling */
+    .item {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    .item img {
+      max-width: 100px; 
+      max-height: 100px;
+    }
+  </style>
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+    text-align: left;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+    float : right;
+    position: relative;
+    bottom: 35px;
+    
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.card {
+    width: 500px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin: 5px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex; /* Set display to flex */
+    flex-direction: row; /* Stack children vertically */
+    align-items: left; /* Center children horizontally */
+    text-align: right; /* Center text */
+    height: 200px;
+}
+
+.card img {
+    max-width: 50%;
+    height: auto;
+    margin-bottom: 10px; /* Add margin to separate image and text */
+}
+
+.card h2 {
+    font-size: 1.5em;
+    margin-right: 55px;
+    align-items: end;
+}
+
+.card p {
+    color: #555;
+}
+
+.card .price {
+    color: #e44d26;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    
+}
+#price{
+    position: relative;
+    left: 70px;
+}
+#cart{
+    position: relative;
+    bottom: 42px;
+}
+
+#item-name{
+    position: relative;
+    left: 58px;
+}
+
+.add-to-cart {
+    background-color: #e44d26;
+    color: #fff;
+    border: none;
+    height: 40px;
+    width: 150px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    position: relative;
+    left: 34px;
+}
+
+.add-to-cart:hover {
+    background-color: #333;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    background-image: url('/images/back.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+    text-align: left;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 80px;
+    float : right;
+    position: relative;
+    bottom: 35px;
+    
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+.container {
+  max-width: 1200px;
+  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  /* background-image: url('/images/back.jpg');
+  background-repeat: no-repeat;
+  background-size: cover; */
+ 
+}
+
+.card {
+  width: 200px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  margin: 5px;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex; /* Set display to flex */
+  flex-direction: row; /* Stack children vertically */
+  align-items: left; /* Center children horizontally */
+  text-align: left; /* Center text */
+  height: 150px;
+}
+#quantity{
+  position: relative;
+  bottom: 5px;
+}
+
+
+#item-name{
+  position: relative;
+  left: 10px;
+}
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body{
+  background: #f2f2f2;
+  font-family: 'Open Sans', sans-serif;
+  background-image: url('/images/back.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+  bottom: 30px;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid #00B4CC;
+  border-right: none;
+  padding: 5px;
+  height: 36px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus{
+  color: #00B4CC;
+}
+
+.searchButton {
+  width: 80px;
+  height: 36px;
+  border: 1px solid #00B4CC;
+  background: #00B4CC;
+  text-align: center;
+  
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  width: 30%;
+  position: absolute;
+  bottom: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#data{
+  align-items: center;
+  position: relative;
+  left: 42%;
+
+}
+#oops{
+  align-items: center;
+  position: relative;
+  left: 45%;
+}

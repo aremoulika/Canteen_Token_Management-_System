@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Form</title>
+</head>
+<body>
+  <div>
+    Wallet contains: <%= walletCoins %> coins
+  </div>
+  <form action="/submitOrder" method="POST">
+    <label for="deliveryDate">Delivery Date:</label>
+    <input type="date" id="deliveryDate" name="deliveryDate" min="<%= new Date().toISOString().split('T')[0] %>"><br><br>
+    <button type="submit">Submit Order</button>
+  </form>
+</body>
+</html>
